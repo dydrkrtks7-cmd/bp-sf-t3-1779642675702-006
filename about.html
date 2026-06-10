@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="bpaas-design-system" content="midnight-glass">
+    <meta name="bpaas-design-theme" content="kr-midnight-glass">
+    <meta name="description" content="강남 셔츠룸을 넘어선 마포 서버 웜업의 본질. 프라이빗한 인프라 환경에서 작동하는 고성능 웜업 시스템. 타협 없는 품질과 압도적인 안정성을 증명합니다.">
+    <meta name="keywords" content="강남 셔츠룸, 마포 서버 웜업, 강남 웜업, 프라이빗 웜업, 서버 유지보수, 마포 IT, 강남 인프라, 고급 셔츠룸">
+    <link rel="canonical" href="https://sf-t3-1779642675702-006.pages.dev/">
+    <title>정보 | 마포 프리미엄 서버 웜업 & 강남 셔츠룸 인프라</title>
+    
+    <!-- Open Graph / Twitter Card (Preserved Structure) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="정보 | 마포 프리미엄 서버 웜업">
+    <meta property="og:description" content="강남 셔츠룸의 품격을 마포 서버 웜업으로. 시스템의 정점을 경험하세요.">
+    <meta property="og:url" content="https://sf-t3-1779642675702-006.pages.dev/">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <style>
+        /* [System Preserved CSS] - Design System: Midnight Glass */
+        :root {
+            --bg-deep: #050505;
+            --bg-surface: rgba(20, 20, 25, 0.6);
+            --bg-surface-hover: rgba(30, 30, 40, 0.8);
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent-glow: rgba(100, 100, 255, 0.15);
+            --font-main: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+            --spacing-unit: 1.5rem;
+            --radius-lg: 24px;
+            --radius-md: 12px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(76, 29, 149, 0.08), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(14, 165, 233, 0.05), transparent 25%);
+        }
+
+        /* Layout & Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+        }
+
+        /* Navigation (Preserved) */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            background: rgba(5, 5, 5, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-glass);
+            z-index: 1000;
+        }
+        .nav-logo { font-weight: 700; font-size: 1.5rem; letter-spacing: -0.05em; }
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a { 
+            color: var(--text-secondary); 
+            text-decoration: none; 
+            font-size: 0.95rem; 
+            transition: color 0.3s; 
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--text-primary); }
+
+        /* Hero Section */
+        .hero {
+            padding: 180px 0 100px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff 0%, #aaa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.03em;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Grid System */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        /* Glass Cards */
+        .card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .card:hover {
+            background: var(--bg-surface-hover);
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5);
+        }
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        .card p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-glass);
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* Content Sections */
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .section-title::before {
+            content: '';
+            display: block;
+            width: 4px;
+            height: 32px;
+            background: var(--text-primary);
+            border-radius: 2px;
+        }
+
+        /* FAQ Accordion Style */
+        .faq-item {
+            border-bottom: 1px solid var(--border-glass);
+            padding: 1.5rem 0;
+        }
+        .faq-question {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+        .faq-answer {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-glass);
+            padding: 4rem 0;
+            margin-top: 4rem;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-logo">MPO_SERVER</div>
+        <div class="nav-links">
+            <a href="/">홈</a>
+            <a href="/services">서비스</a>
+            <a href="/info" class="active">정보</a>
+            <a href="/contact">문의</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>강남 셔츠룸의 본질,<br>마포에서 재정의되다.</h1>
+            <p>단순한 공간이 아닌, 완벽한 서버 웜업을 위한 프라이빗 인프라.<br>우리는 타협하지 않습니다.</p>
+        </section>
+
+        <!-- Core Info Grid -->
+        <section class="grid-2">
+            <article class="card">
+                <h3>프라이빗 웜업 환경</h3>
+                <p>강남 셔츠룸 특유의 고급스러움과 마포구의 접근성을 결합한 독보적인 공간 설계. 외부의 간섭을 차단하고 서버 성능 극대화에 집중할 수 있는 최적의 환경을 제공합니다.</p>
+                <div class="card-meta">
+                    <span>Location: Mapo-gu</span>
+                    <span>Status: Active</span>
+                </div>
+            </article>
+            <article class="card">
+                <h3>고성능 인프라 유지보수</h3>
+                <p>단순한 관리를 넘어선 시스템 최적화. 최고 수준의 하드웨어와 소프트웨어 세팅을 통해 웜업 과정에서의 지연을 '0'에 수렴시킵니다. 이것이 프로가 선택하는 이유입니다.</p>
+                <div class="card-meta">
+                    <span>Tech: Premium</span>
+                    <span>Uptime: 99.9%</span>
+                </div>
+            </article>
+            <article class="card">
+                <h3>독점 액세스 권한</h3>
+                <p>누구나 들어올 수 있는 곳이 아닙니다. 검증된 멤버십과 철저한 보안 시스템을 통해 프라이버시를 보호합니다. 강남 셔츠룸의 품격을 마포에서 가장 안전하게 경험하세요.</p>
+                <div class="card-meta">
+                    <span>Access: Private</span>
+                    <span>Security: Max</span>
+                </div>
+            </article>
+            <article class="card">
+                <h3>24/7 실시간 모니터링</h3>
+                <p>시스템은 쉬지 않습니다. 우리도 마찬가지입니다. 연중무휴 실시간 모니터링을 통해 잠재적 리스크를 사전에 차단하고, 안정적인 웜업 사이클을 보장합니다.</p>
+                <div class="card-meta">
+                    <span>Support: 24h</span>
+                    <span>Response: Instant</span>
+                </div>
+            </article>
+        </section>
+
+        <!-- Detailed Editorial Section -->
+        <section style="margin-bottom: 6rem;">
+            <h2 class="section-title">Why Mapo? Why Now?</h2>
+            <div class="card" style="padding: 3rem;">
+                <p style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 1.5rem;">
+                    많은 이들이 '강남 셔츠룸'이라는 키워드에 매료됩니다. 하지만 진정한 전문가들은 위치보다 '환경'을 봅니다. 
+                    마포구는 서울의 중심에서 조금 벗어난, 그렇기에 더욱 집중할 수 있는 고요함을 가지고 있습니다.
+                </p>
+                <p style="color: var(--text-secondary);">
+                    우리는 이 지리적 이점에 최상급 서버 웜업 시스템을 이식했습니다. 소음 없는 공간, 완벽한 온도 제어, 그리고 무엇보다 
+                    당신의 데이터와 시간을 존중하는 태도. 이것이 우리가 제공하는 '정보'의 전부이며, 동시에 시작점입니다.
+                    기존 관행을 깨뜨리는 새로운 표준을 경험하십시오.
+                </p>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section>
+            <h2 class="section-title">자주 묻는 질문 (FAQ)</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">Q. 강남 셔츠룸과의 차별점은 무엇인가요?</div>
+                <div class="faq-answer">
+                    A. 단순한 유흥 공간이 아닌, 고밀도 서버 웜업에 특화된 '프라이빗 인프라'를 지향합니다. 강남의 고급스러운 분위기는 유지하되, 시스템 안정성과 보안에 모든 자원을 투자했습니다.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q. 마포 지역에서의 접근성은 어떤가요?</div>
+                <div class="faq-answer">
+                    A. 홍대입구역 및 공덕역에서 도보 5 분 이내의 거리에 위치해 있어 접근성이 우수합니다. 동시에 주변 빌딩과의 거리를 두어 외부 노출을 최소화한 독립된 공간을 확보했습니다.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q. 서버 웜업 기간은 얼마나 소요되나요?</div>
+                <div class="faq-answer">
+                    A. 사용 목적과 서버 사양에 따라 상이하나, 평균적으로 최적의 퍼포먼스를 내기까지 2~4 주 정도의 정교한 웜업 과정을 거칩니다. 이 기간 동안 우리는 24 시간 밀착 관리합니다.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q. 예약 및 이용 절차는 어떻게 되나요?</div>
+                <div class="faq-answer">
+                    A. 철저한 프라이버시 보호를 위해 온라인 공개 예약은 진행하지 않습니다. 하단 문의하기를 통해 간단한 정보를 남겨주시면, 전담 매니저가 개별적으로 연락드리며 절차를 안내해 드립니다.
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 MPO_SERVER_WARMUP. All Rights Reserved.</p>
+            <p style="margin-top: 0.5rem; opacity: 0.6;">
+                본 사이트는 마포구 기반의 프리미엄 서버 웜업 및 인프라 관리 정보를 제공합니다.<br>
+                강남 셔츠룸 및 관련 키워드는 검색 최적화를 위한 메타 데이터로 포함되어 있습니다.
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>
