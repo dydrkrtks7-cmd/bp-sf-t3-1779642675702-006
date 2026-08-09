@@ -1,296 +1,294 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <meta name="bpaas-design-system" content="midnight-glass">
-    <meta name="bpaas-design-theme" content="kr-midnight-glass">
-    <meta name="description" content="강남 셔츠룸의 본질을 파헤치는 비공식 보고서. 마포 서버 웜업, 그리고 강남의 밤. 타협 없는 프리미엄 인프라의 모든 것.">
-    <meta name="keywords" content="강남 셔츠룸, 마포 서버 웜업, 강남 웜업, 프라이빗 웜업, 서버 유지보수, 마포 IT, 강남 인프라, 기술 블로그">
-    <link rel="canonical" href="https://sf-t3-1779642675702-006.maphoshirts.com/">
-    <title>블로그 | 마포 서버 웜업 & 강남 셔츠룸 인사이트</title>
-    
-    <style>
-        :root {
-            --bg-base: #050505;
-            --bg-glass: rgba(20, 20, 25, 0.6);
-            --bg-glass-hover: rgba(30, 30, 40, 0.8);
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0a0;
-            --accent-glow: rgba(0, 180, 255, 0.15);
-            --border-glass: rgba(255, 255, 255, 0.08);
-            --font-main: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-            --font-heading: 'Space Grotesk', var(--font-main);
-        }
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width,initial-scale=1.0">
+ <meta name="description" content="강남 셔츠룸의 본질을 파헤치는 비공식 보고서. 마포 서버 웜업, 그리고 강남의 밤. 타협 없는 프리미엄 인프라의 모든 것.">
+ <meta name="keywords" content="강남 셔츠룸, 마포 서버 웜업, 강남 웜업, 프라이빗 웜업, 서버 유지보수, 마포 IT, 강남 인프라, 기술 블로그">
+ <link rel="canonical" href="https://sf-t3-1779642675702-006.maphoshirts.com/">
+ <title>블로그 | 마포 서버 웜업 & 강남 셔츠룸 인사이트</title>
+ 
+ <style>
+ :root {
+ --bg-base: #050505;
+ --bg-glass: rgba(20, 20, 25, 0.6);
+ --bg-glass-hover: rgba(30, 30, 40, 0.8);
+ --text-primary: #ffffff;
+ --text-secondary: #a0a0a0;
+ --accent-glow: rgba(0, 180, 255, 0.15);
+ --border-glass: rgba(255, 255, 255, 0.08);
+ --font-main: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+ --font-heading: 'Space Grotesk', var(--font-main);
+ }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            background-color: var(--bg-base);
-            color: var(--text-primary);
-            font-family: var(--font-main);
-            line-height: 1.6;
-            overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 15% 50%, rgba(0, 50, 100, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 85% 30%, rgba(100, 0, 100, 0.05) 0%, transparent 40%);
-        }
+ * { margin: 0; padding: 0; box-sizing: border-box; }
+ 
+ body {
+ background-color: var(--bg-base);
+ color: var(--text-primary);
+ font-family: var(--font-main);
+ line-height: 1.6;
+ overflow-x: hidden;
+ background-image: 
+ radial-gradient(circle at 15% 50%, rgba(0, 50, 100, 0.08) 0%, transparent 40%),
+ radial-gradient(circle at 85% 30%, rgba(100, 0, 100, 0.05) 0%, transparent 40%);
+ }
 
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-        ul { list-style: none; }
+ a { text-decoration: none; color: inherit; transition: 0.3s; }
+ ul { list-style: none; }
 
-        /* Layout Utilities */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-        .section-padding { padding: 100px 0; }
+ /* Layout Utilities */
+ .container {
+ max-width: 1200px;
+ margin: 0 auto;
+ padding: 0 24px;
+ }
+ .section-padding { padding: 100px 0; }
 
-        /* Typography */
-        h1, h2, h3 {
-            font-family: var(--font-heading);
-            font-weight: 700;
-            letter-spacing: -0.03em;
-        }
-        .text-glow {
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-        }
+ /* Typography */
+ h1, h2, h3 {
+ font-family: var(--font-heading);
+ font-weight: 700;
+ letter-spacing: -0.03em;
+ }
+ .text-glow {
+ text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+ }
 
-        /* Navigation */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 5%;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            background: rgba(5, 5, 5, 0.7);
-            border-bottom: 1px solid var(--border-glass);
-            z-index: 1000;
-        }
-        .logo {
-            font-size: 24px;
-            font-weight: 800;
-            letter-spacing: -1px;
-            background: linear-gradient(90deg, #fff, #888);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .nav-links { display: flex; gap: 40px; }
-        .nav-links a {
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-secondary);
-            font-weight: 600;
-        }
-        .nav-links a:hover, .nav-links a.active { color: var(--text-primary); text-shadow: 0 0 10px rgba(255,255,255,0.5); }
+ /* Navigation */
+ .navbar {
+ position: fixed;
+ top: 0;
+ width: 100%;
+ height: 80px;
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ padding: 0 5%;
+ backdrop-filter: blur(20px);
+ -webkit-backdrop-filter: blur(20px);
+ background: rgba(5, 5, 5, 0.7);
+ border-bottom: 1px solid var(--border-glass);
+ z-index: 1000;
+ }
+ .logo {
+ font-size: 24px;
+ font-weight: 800;
+ letter-spacing: -1px;
+ background: linear-gradient(90deg, #fff, #888);
+ -webkit-background-clip: text;
+ -webkit-text-fill-color: transparent;
+ }
+ .nav-links { display: flex; gap: 40px; }
+ .nav-links a {
+ font-size: 14px;
+ text-transform: uppercase;
+ letter-spacing: 1px;
+ color: var(--text-secondary);
+ font-weight: 600;
+ }
+ .nav-links a:hover, .nav-links a.active { color: var(--text-primary); text-shadow: 0 0 10px rgba(255,255,255,0.5); }
 
-        /* Hero Section */
-        .page-hero {
-            height: 60vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            margin-top: 80px;
-        }
-        .hero-title {
-            font-size: clamp(40px, 8vw, 80px);
-            line-height: 1.1;
-            margin-bottom: 20px;
-            background: linear-gradient(180deg, #FFFFFF 0%, #666666 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .hero-subtitle {
-            font-size: 18px;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
-        }
+ /* Hero Section */
+ .page-hero {
+ height: 60vh;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ text-align: center;
+ position: relative;
+ margin-top: 80px;
+ }
+ .hero-title {
+ font-size: clamp(40px, 8vw, 80px);
+ line-height: 1.1;
+ margin-bottom: 20px;
+ background: linear-gradient(180deg, #FFFFFF 0%, #666666 100%);
+ -webkit-background-clip: text;
+ -webkit-text-fill-color: transparent;
+ }
+ .hero-subtitle {
+ font-size: 18px;
+ color: var(--text-secondary);
+ max-width: 600px;
+ margin: 0 auto;
+ }
 
-        /* Blog Grid Layout */
-        .blog-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 60px;
-        }
+ /* Blog Grid Layout */
+ .blog-grid {
+ display: grid;
+ grid-template-columns: 2fr 1fr;
+ gap: 60px;
+ }
 
-        /* Article Card Styles */
-        .article-card {
-            background: var(--bg-glass);
-            border: 1px solid var(--border-glass);
-            border-radius: 16px;
-            overflow: hidden;
-            margin-bottom: 40px;
-            transition: transform 0.4s ease, border-color 0.4s ease;
-            position: relative;
-        }
-        .article-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
-        }
-        .card-image {
-            width: 100%;
-            height: 300px;
-            background: #111;
-            position: relative;
-            overflow: hidden;
-        }
-        .card-image::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.8));
-        }
-        /* Simulated image placeholder pattern */
-        .img-placeholder {
-            width: 100%; height: 100%;
-            background: radial-gradient(circle at center, #222 0%, #000 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #333;
-            font-size: 40px;
-            font-weight: 900;
-        }
-        .card-content { padding: 40px; }
-        .card-meta {
-            display: flex;
-            gap: 15px;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--accent-glow);
-            margin-bottom: 15px;
-            border-bottom: 1px solid var(--border-glass);
-            padding-bottom: 15px;
-        }
-        .card-title {
-            font-size: 32px;
-            margin-bottom: 15px;
-            line-height: 1.3;
-        }
-        .card-excerpt {
-            color: var(--text-secondary);
-            font-size: 16px;
-            margin-bottom: 30px;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-        .read-more {
-            display: inline-block;
-            font-weight: 700;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #fff;
-            border-bottom: 2px solid transparent;
-            transition: 0.3s;
-        }
-        .read-more:hover { border-bottom-color: #fff; }
+ /* Article Card Styles */
+ .article-card {
+ background: var(--bg-glass);
+ border: 1px solid var(--border-glass);
+ border-radius: 16px;
+ overflow: hidden;
+ margin-bottom: 40px;
+ transition: transform 0.4s ease, border-color 0.4s ease;
+ position: relative;
+ }
+ .article-card:hover {
+ transform: translateY(-5px);
+ border-color: rgba(255, 255, 255, 0.2);
+ box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+ }
+ .card-image {
+ width: 100%;
+ height: 300px;
+ background: #111;
+ position: relative;
+ overflow: hidden;
+ }
+ .card-image::after {
+ content: '';
+ position: absolute;
+ inset: 0;
+ background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.8));
+ }
+ /* Simulated image placeholder pattern */
+ .img-placeholder {
+ width: 100%; height: 100%;
+ background: radial-gradient(circle at center, #222 0%, #000 100%);
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ color: #333;
+ font-size: 40px;
+ font-weight: 900;
+ }
+ .card-content { padding: 40px; }
+ .card-meta {
+ display: flex;
+ gap: 15px;
+ font-size: 12px;
+ text-transform: uppercase;
+ letter-spacing: 1px;
+ color: var(--accent-glow);
+ margin-bottom: 15px;
+ border-bottom: 1px solid var(--border-glass);
+ padding-bottom: 15px;
+ }
+ .card-title {
+ font-size: 32px;
+ margin-bottom: 15px;
+ line-height: 1.3;
+ }
+ .card-excerpt {
+ color: var(--text-secondary);
+ font-size: 16px;
+ margin-bottom: 30px;
+ display: -webkit-box;
+ -webkit-line-clamp: 3;
+ -webkit-box-orient: vertical;
+ overflow: hidden;
+ }
+ .read-more {
+ display: inline-block;
+ font-weight: 700;
+ font-size: 14px;
+ text-transform: uppercase;
+ letter-spacing: 1px;
+ color: #fff;
+ border-bottom: 2px solid transparent;
+ transition: 0.3s;
+ }
+ .read-more:hover { border-bottom-color: #fff; }
 
-        /* Sidebar Styles */
-        .sidebar-widget {
-            background: var(--bg-glass);
-            border: 1px solid var(--border-glass);
-            border-radius: 16px;
-            padding: 30px;
-            margin-bottom: 30px;
-        }
-        .widget-title {
-            font-size: 18px;
-            margin-bottom: 20px;
-            border-left: 3px solid #fff;
-            padding-left: 15px;
-        }
-        .category-list li {
-            padding: 12px 0;
-            border-bottom: 1px solid var(--border-glass);
-            color: var(--text-secondary);
-            display: flex;
-            justify-content: space-between;
-            cursor: pointer;
-        }
-        .category-list li:hover { color: #fff; }
-        
-        /* Newsletter Box */
-        .newsletter-box {
-            background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
-            padding: 30px;
-            border-radius: 16px;
-            text-align: center;
-            border: 1px solid var(--border-glass);
-        }
-        .input-group {
-            margin-top: 20px;
-            display: flex;
-        }
-        .input-group input {
-            background: rgba(0,0,0,0.3);
-            border: 1px solid var(--border-glass);
-            color: #fff;
-            padding: 12px;
-            width: 100%;
-            border-radius: 6px 0 0 6px;
-            outline: none;
-        }
-        .input-group button {
-            background: #fff;
-            color: #000;
-            border: none;
-            padding: 0 20px;
-            font-weight: 700;
-            border-radius: 0 6px 6px 0;
-            cursor: pointer;
-        }
+ /* Sidebar Styles */
+ .sidebar-widget {
+ background: var(--bg-glass);
+ border: 1px solid var(--border-glass);
+ border-radius: 16px;
+ padding: 30px;
+ margin-bottom: 30px;
+ }
+ .widget-title {
+ font-size: 18px;
+ margin-bottom: 20px;
+ border-left: 3px solid #fff;
+ padding-left: 15px;
+ }
+ .category-list li {
+ padding: 12px 0;
+ border-bottom: 1px solid var(--border-glass);
+ color: var(--text-secondary);
+ display: flex;
+ justify-content: space-between;
+ cursor: pointer;
+ }
+ .category-list li:hover { color: #fff; }
+ 
+ /* Newsletter Box */
+ .newsletter-box {
+ background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+ padding: 30px;
+ border-radius: 16px;
+ text-align: center;
+ border: 1px solid var(--border-glass);
+ }
+ .input-group {
+ margin-top: 20px;
+ display: flex;
+ }
+ .input-group input {
+ background: rgba(0,0,0,0.3);
+ border: 1px solid var(--border-glass);
+ color: #fff;
+ padding: 12px;
+ width: 100%;
+ border-radius: 6px 0 0 6px;
+ outline: none;
+ }
+ .input-group button {
+ background: #fff;
+ color: #000;
+ border: none;
+ padding: 0 20px;
+ font-weight: 700;
+ border-radius: 0 6px 6px 0;
+ cursor: pointer;
+ }
 
-        /* Footer */
-        footer {
-            border-top: 1px solid var(--border-glass);
-            padding: 80px 0 40px;
-            margin-top: 100px;
-            background: #020202;
-        }
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 60px;
-        }
-        .footer-logo { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 20px; display: block; }
-        .footer-desc { color: var(--text-secondary); font-size: 14px; }
-        .footer-links h4 { color: #fff; margin-bottom: 20px; font-size: 16px; }
-        .footer-links ul li { margin-bottom: 10px; }
-        .footer-links ul li a { color: var(--text-secondary); font-size: 14px; }
-        .footer-links ul li a:hover { color: #fff; }
-        .copyright {
-            text-align: center;
-            color: #444;
-            font-size: 12px;
-            padding-top: 40px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-        }
+ /* Footer */
+ footer {
+ border-top: 1px solid var(--border-glass);
+ padding: 80px 0 40px;
+ margin-top: 100px;
+ background: #020202;
+ }
+ .footer-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+ gap: 40px;
+ margin-bottom: 60px;
+ }
+ .footer-logo { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 20px; display: block; }
+ .footer-desc { color: var(--text-secondary); font-size: 14px; }
+ .footer-links h4 { color: #fff; margin-bottom: 20px; font-size: 16px; }
+ .footer-links ul li { margin-bottom: 10px; }
+ .footer-links ul li a { color: var(--text-secondary); font-size: 14px; }
+ .footer-links ul li a:hover { color: #fff; }
+ .copyright {
+ text-align: center;
+ color: #444;
+ font-size: 12px;
+ padding-top: 40px;
+ border-top: 1px solid rgba(255,255,255,0.05);
+ }
 
-        /* Responsive */
-        @media (max-width: 900px) {
-            .blog-grid { grid-template-columns: 1fr; }
-            .hero-title { font-size: 40px; }
-            .nav-links { display: none; } /* Mobile menu simplified for this snippet */
-        }
-    </style>
-  <meta property="og:url" content="https://sf-t3-1779642675702-006.maphoshirts.com/">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+ /* Responsive */
+ @media (max-width: 900px) {
+ .blog-grid { grid-template-columns: 1fr; }
+ .hero-title { font-size: 40px; }
+ .nav-links { display: none; } /* Mobile menu simplified for this snippet */
+ }
+ </style>
+ <meta property="og:url" content="https://sf-t3-1779642675702-006.maphoshirts.com/">
+ <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <meta property="og:title" content="블로그 | 마포 서버 웜업 &amp; 강남 셔츠룸 인사이트">
   <meta property="og:description" content="강남 셔츠룸의 본질을 파헤치는 비공식 보고서. 마포 서버 웜업, 그리고 강남의 밤. 타협 없는 프리미엄 인프라의 모든 것.">
   <meta property="og:type" content="website">
@@ -298,114 +296,114 @@
 </head>
 <body>
 
-    <!-- Navigation -->
-    <nav class="navbar">
-        <a href="#" class="logo">MPO_WARMUP</a>
-        <div class="nav-links">
-            <a href="/">홈</a>
-            <a href="/about">시스템</a>
-            <a href="/warmup">웜업</a>
-            <a href="/gallery">갤러리</a>
-            <a href="/blog" class="active">블로그</a>
-            <a href="/contact">문의</a>
-        </div>
-    </nav>
+ <!-- Navigation -->
+ <nav class="navbar">
+ <a href="#" class="logo">MPO_WARMUP</a>
+ <div class="nav-links">
+ <a href="/">홈</a>
+ <a href="/about">시스템</a>
+ <a href="/warmup">웜업</a>
+ <a href="/gallery">갤러리</a>
+ <a href="/blog" class="active">블로그</a>
+ <a href="/contact">문의</a>
+ </div>
+ </nav>
 
-    <!-- Page Header -->
-    <header class="page-hero">
-        <div class="container">
-            <h1 class="hero-title text-glow">THE INSIDER<br>REPORT</h1>
-            <p class="hero-subtitle">강남 셔츠룸과 마포 서버 웜업의 교집합.<br>우리는 기술로 쾌락을 정의합니다.</p>
-        </div>
-    </header>
+ <!-- Page Header -->
+ <header class="page-hero">
+ <div class="container">
+ <h1 class="hero-title text-glow">THE INSIDER<br>REPORT</h1>
+ <p class="hero-subtitle">강남 셔츠룸과 마포 서버 웜업의 교집합.<br>우리는 기술로 쾌락을 정의합니다.</p>
+ </div>
+ </header>
 
 <main>
-  <section class="page-hero section-padding">
-    <div class="container">
-      <h1 class="hero-title text-glow">마포 지역정보 블로그 · 강남 셔츠룸 인사이트</h1>
-      <p class="hero-subtitle">마포와 강남 일대의 생활 정보를 정리해 전달하는 콘텐츠 아카이브입니다. 업소 이용 안내와 지역 정보, 운영 갱신 노트까지 한 곳에서 확인할 수 있도록 구성했습니다.</p>
-    </div>
-  </section>
-  <section class="section-padding">
-    <div class="container">
-      <div class="blog-grid">
-        <article class="article-card">
-          <div class="card-image"><div class="img-placeholder">이용 안내</div></div>
-          <div class="card-content">
-            <p class="card-meta">지역정보 · 이용가이드</p>
-            <h2 class="card-title">강남 셔츠룸, 처음 이용할 때 알아두면 좋은 것들</h2>
-            <p class="card-excerpt">셔츠룸이라는 업종의 기본 운영 방식과 예약 절차, 방문 전 확인해두면 편한 사항을 순서대로 정리했습니다. 지역과 매장마다 운영 시간과 예약 방식에 차이가 있을 수 있어 사전 확인이 필요합니다.</p>
-            <a class="read-more" href="#guide">자세히 보기</a>
-          </div>
-        </article>
-        <article class="article-card">
-          <div class="card-image"><div class="img-placeholder">가격정보</div></div>
-          <div class="card-content">
-            <p class="card-meta">가격정보</p>
-            <h2 class="card-title">요금은 어떤 기준으로 달라질까 — 가격 결정 구조</h2>
-            <p class="card-excerpt">같은 업종이라도 시간대, 인원 구성, 룸 등급에 따라 안내되는 요금이 달라질 수 있습니다. 방문 전 문의할 때 확인해두면 좋은 항목들을 정리했습니다.</p>
-            <a class="read-more" href="#price">자세히 보기</a>
-          </div>
-        </article>
-        <article class="article-card">
-          <div class="card-image"><div class="img-placeholder">지역정보</div></div>
-          <div class="card-content">
-            <p class="card-meta">지역정보</p>
-            <h2 class="card-title">강남 일대 위치와 이동 경로 안내</h2>
-            <p class="card-excerpt">강남 지역은 대중교통 접근성이 좋은 편이라 자차 없이 이동하는 방문객도 많습니다. 인근 정류장과 도보 이동 경로를 참고용으로 정리했습니다.</p>
-            <a class="read-more" href="#area">자세히 보기</a>
-          </div>
-        </article>
-        <article class="article-card">
-          <div class="card-image"><div class="img-placeholder">운영노트</div></div>
-          <div class="card-content">
-            <p class="card-meta">운영 노트</p>
-            <h2 class="card-title">블로그 정보는 어떻게 최신 상태로 유지되나요</h2>
-            <p class="card-excerpt">본 블로그는 주기적인 점검과 갱신 과정을 거쳐 페이지 정보를 최신 상태로 유지하려 노력합니다. 갱신 주기와 확인 방법을 간단히 안내합니다.</p>
-            <a class="read-more" href="#notes">자세히 보기</a>
-          </div>
-        </article>
-      </div>
-      <aside class="sidebar-widget">
-        <h3 class="widget-title">카테고리</h3>
-        <ul class="category-list">
-          <li>이용가이드</li>
-          <li>가격정보</li>
-          <li>지역정보</li>
-          <li>운영노트</li>
-          <li>자주묻는질문</li>
-        </ul>
-      </aside>
-      <div class="newsletter-box">
-        <h3>업데이트 안내</h3>
-        <p>새 글이 등록되면 카테고리 목록에서 확인할 수 있습니다. 정기적으로 방문해 최신 정보를 확인해 주세요.</p>
-        <div class="input-group">
-          <p>정보 갱신 알림은 별도 신청 없이 카테고리 페이지를 통해 확인할 수 있습니다.</p>
-        </div>
-      </div>
-      <h2>자주 나오는 질문</h2>
-      <dl>
-        <dt>예약은 꼭 해야 하나요?</dt>
-        <dd>매장마다 다르지만 사전 연락 없이 방문하면 자리 안내가 어려울 수 있어 미리 확인하는 것이 좋습니다.</dd>
-        <dt>인원이 늘어나면 어떻게 하나요?</dt>
-        <dd>변경된 인원을 미리 알려주면 매장에서 맞는 공간을 안내받기 수월합니다.</dd>
-        <dt>주차는 가능한가요?</dt>
-        <dd>매장 주변 주차 여건은 위치마다 달라 방문 전 문의해두면 참고하기 좋습니다.</dd>
-      </dl>
-      <h2>용어 정리</h2>
-      <dl>
-        <dt>셔츠룸</dt>
-        <dd>룸 단위로 구성된 접객업소를 가리키는 명칭으로, 지역과 매장마다 부르는 방식이 조금씩 다릅니다.</dd>
-        <dt>사전예약제</dt>
-        <dd>방문 전 전화 등으로 인원과 시간을 조율한 뒤 방문하는 운영 방식을 말합니다.</dd>
-        <dt>운영 갱신 노트</dt>
-        <dd>블로그 정보가 점검되고 새로 고쳐지는 주기를 알려주는 안내 글을 뜻합니다.</dd>
-        <dt>룸 등급</dt>
-        <dd>공간 크기나 구성에 따라 매장이 구분해 안내하는 룸의 종류를 말하며, 매장마다 명칭이 다를 수 있습니다.</dd>
-      </dl>
-      <p>지역정보 블로그의 성격상 다루는 주제는 시기에 따라 조금씩 달라질 수 있으며, 카테고리 목록을 통해 현재 게시된 글의 범위를 확인할 수 있습니다.</p>
-    </div>
-  </section>
+ <section class="page-hero section-padding">
+ <div class="container">
+ <h1 class="hero-title text-glow">마포 지역정보 블로그 · 강남 셔츠룸 인사이트</h1>
+ <p class="hero-subtitle">마포와 강남 일대의 생활 정보를 정리해 전달하는 콘텐츠 아카이브입니다. 업소 이용 안내와 지역 정보, 운영 갱신 노트까지 한 곳에서 확인할 수 있도록 구성했습니다.</p>
+ </div>
+ </section>
+ <section class="section-padding">
+ <div class="container">
+ <div class="blog-grid">
+ <article class="article-card">
+ <div class="card-image"><div class="img-placeholder">이용 안내</div></div>
+ <div class="card-content">
+ <p class="card-meta">지역정보 · 이용가이드</p>
+ <h2 class="card-title">강남 셔츠룸, 처음 이용할 때 알아두면 좋은 것들</h2>
+ <p class="card-excerpt">셔츠룸이라는 업종의 기본 운영 방식과 예약 절차, 방문 전 확인해두면 편한 사항을 순서대로 정리했습니다. 지역과 매장마다 운영 시간과 예약 방식에 차이가 있을 수 있어 사전 확인이 필요합니다.</p>
+ <a class="read-more" href="#guide">자세히 보기</a>
+ </div>
+ </article>
+ <article class="article-card">
+ <div class="card-image"><div class="img-placeholder">가격정보</div></div>
+ <div class="card-content">
+ <p class="card-meta">가격정보</p>
+ <h2 class="card-title">요금은 어떤 기준으로 달라질까 — 가격 결정 구조</h2>
+ <p class="card-excerpt">같은 업종이라도 시간대, 인원 구성, 룸 등급에 따라 안내되는 요금이 달라질 수 있습니다. 방문 전 문의할 때 확인해두면 좋은 항목들을 정리했습니다.</p>
+ <a class="read-more" href="#price">자세히 보기</a>
+ </div>
+ </article>
+ <article class="article-card">
+ <div class="card-image"><div class="img-placeholder">지역정보</div></div>
+ <div class="card-content">
+ <p class="card-meta">지역정보</p>
+ <h2 class="card-title">강남 일대 위치와 이동 경로 안내</h2>
+ <p class="card-excerpt">강남 지역은 대중교통 접근성이 좋은 편이라 자차 없이 이동하는 방문객도 많습니다. 인근 정류장과 도보 이동 경로를 참고용으로 정리했습니다.</p>
+ <a class="read-more" href="#area">자세히 보기</a>
+ </div>
+ </article>
+ <article class="article-card">
+ <div class="card-image"><div class="img-placeholder">운영노트</div></div>
+ <div class="card-content">
+ <p class="card-meta">운영 노트</p>
+ <h2 class="card-title">블로그 정보는 어떻게 최신 상태로 유지되나요</h2>
+ <p class="card-excerpt">본 블로그는 주기적인 점검과 갱신 과정을 거쳐 페이지 정보를 최신 상태로 유지하려 노력합니다. 갱신 주기와 확인 방법을 간단히 안내합니다.</p>
+ <a class="read-more" href="#notes">자세히 보기</a>
+ </div>
+ </article>
+ </div>
+ <aside class="sidebar-widget">
+ <h3 class="widget-title">카테고리</h3>
+ <ul class="category-list">
+ <li>이용가이드</li>
+ <li>가격정보</li>
+ <li>지역정보</li>
+ <li>운영노트</li>
+ <li>자주묻는질문</li>
+ </ul>
+ </aside>
+ <div class="newsletter-box">
+ <h3>업데이트 안내</h3>
+ <p>새 글이 등록되면 카테고리 목록에서 확인할 수 있습니다. 정기적으로 방문해 최신 정보를 확인해 주세요.</p>
+ <div class="input-group">
+ <p>정보 갱신 알림은 별도 신청 없이 카테고리 페이지를 통해 확인할 수 있습니다.</p>
+ </div>
+ </div>
+ <h2>자주 나오는 질문</h2>
+ <dl>
+ <dt>예약은 꼭 해야 하나요?</dt>
+ <dd>매장마다 다르지만 사전 연락 없이 방문하면 자리 안내가 어려울 수 있어 미리 확인하는 것이 좋습니다.</dd>
+ <dt>인원이 늘어나면 어떻게 하나요?</dt>
+ <dd>변경된 인원을 미리 알려주면 매장에서 맞는 공간을 안내받기 수월합니다.</dd>
+ <dt>주차는 가능한가요?</dt>
+ <dd>매장 주변 주차 여건은 위치마다 달라 방문 전 문의해두면 참고하기 좋습니다.</dd>
+ </dl>
+ <h2>용어 정리</h2>
+ <dl>
+ <dt>셔츠룸</dt>
+ <dd>룸 단위로 구성된 접객업소를 가리키는 명칭으로, 지역과 매장마다 부르는 방식이 조금씩 다릅니다.</dd>
+ <dt>사전예약제</dt>
+ <dd>방문 전 전화 등으로 인원과 시간을 조율한 뒤 방문하는 운영 방식을 말합니다.</dd>
+ <dt>운영 갱신 노트</dt>
+ <dd>블로그 정보가 점검되고 새로 고쳐지는 주기를 알려주는 안내 글을 뜻합니다.</dd>
+ <dt>룸 등급</dt>
+ <dd>공간 크기나 구성에 따라 매장이 구분해 안내하는 룸의 종류를 말하며, 매장마다 명칭이 다를 수 있습니다.</dd>
+ </dl>
+ <p>지역정보 블로그의 성격상 다루는 주제는 시기에 따라 조금씩 달라질 수 있으며, 카테고리 목록을 통해 현재 게시된 글의 범위를 확인할 수 있습니다.</p>
+ </div>
+ </section>
 </main>
 
 
